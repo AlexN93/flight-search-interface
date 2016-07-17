@@ -2,10 +2,26 @@
   padding-bottom: 5px;
 }
 
-.mb0 {
-  margin-bottom: 0px;
+.nav-tabs > li, .nav-pills > li {
+  float:none;
+  display:inline-block;
+  *display:inline; /* ie7 fix */
+  zoom:1; /* hasLayout ie7 trigger */
 }
 
-.chp, .gender, .dates {
-  text-align-last:center;
+.nav > li > a:hover, .nav > li > a:focus {
+  background-color: white;
+  cursor: pointer;
 }
+
+.nav-tabs, .nav-pills {
+  text-align:center;
+}
+
+input.date {
+  padding-left: 10%;
+}
+
+//.nav-container {
+//  display: none;
+//}

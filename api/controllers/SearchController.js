@@ -8,27 +8,41 @@ require('async');
 
 module.exports = {
   getFlights: function (req, res) {
-    var date = new Date(req.param('date')),
-      from  = req.param('from'),
-      to  = req.param('to'),
-      flights = [];
+    var date = req.param('date'),
+      origin  = req.param('origin'),
+      destination  = req.param('destination');
 
-    SearchService.getDates(date, function (dates) {
-      AirlinesService.getAirlines(function (airlines) {
-        async.each(dates, function (date, callback) {
+    async.waterfall([
+      function(callback) {
+        AirportsService.getAirports(origin, function(origin_airports) {
+          if(!origin_airports.length)  {
+            return res.json(200, {success: false, message: "No origin airports found."});
+          }
+          callback(null, origin_airports);
+        });
+      },
+      function(origin_airports, callback) {
+        AirportsService.getAirports(destination, function(destination_airports) {
+          if(!destination_airports.length)  {
+            return res.json(200, {success: false, message: "No destination airports found."});
+          }
+          callback(null, origin_airports, destination_airports);
+        });
+      },
+      function(origin_airports, destination_airports, callback) {
+        AirlinesService.getAirlines(function (airlines) {
           SearchService.getFlights({
             airlines: airlines,
             date: date,
-            from: from,
-            to: to
+            origin_airports: origin_airports,
+            destination_airports: destination_airports
           }, function (flights_found) {
-            flights.push(flights_found);
-            callback();
+            callback(null, flights_found);
           });
-        }, function done() {
-          return res.json(200, {success: true, flights: flights});
         });
-      });
+      }
+    ], function (err, result) {
+      return res.json(200, {success: true, flights: result});
     });
 
   }

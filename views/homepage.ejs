@@ -1,1 +1,54 @@
+<% block('localScripts', '<script src="/bower_components/moment/moment.js"></script>') %>
+<% block('localScripts', '<script src="/bower_components/spin.js/spin.min.js"></script>') %>
+<div class="container">
+  <div class="jumbotron">
+    <h1 align="center">Flight Search Interface</h1>
+    <div class="row">
+      <form class="col-sm-8 col-sm-offset-2 text-center search-form" method="post">
+        <div class="row">
+          <div class="form-group">
+            <div class="col-md-12 pb5">
+              <input type="text" name="origin" id="origin" class="form-control text-center" placeholder="From location"
+                     value="Bourgas" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <div class="col-md-12 pb5">
+              <input type="text" name="destination" id="destination" class="form-control text-center"
+                     placeholder="To location" value="Belgrade" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="form-group">
+            <div class="col-md-12 pb5">
+              <input type="date" name="date" id="date" class="form-control text-center date" required>
+            </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <button type="submit" class="btn btn-primary btn-md pull-right">Search</button>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="row">
+      <!--<div class="col-sm-8 col-sm-offset-2 text-center">-->
+      <!--<div id="spinner-container"></div>-->
+      <!--</div>-->
+      <div class="col-sm-8 col-sm-offset-2 text-center">
+        <ul class="nav nav-tabs nav-container"></ul>
+      </div>
+    </div>
+    <div class="row">
+      <div id="spinner-container"></div>
+      <div class="col-sm-8 col-sm-offset-2 text-center results-container"></div>
+    </div>
+  </div>
+</div>
+
+
 
