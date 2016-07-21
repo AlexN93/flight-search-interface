@@ -87,7 +87,9 @@ Body request :
 
 ##Getting started:
 You need to have node, bower and npm installed in order to set up the application.<br>
-The app should look like [this](http://screencloud.net/v/mupV).<br>
+The app should look like [this](http://screencloud.net/v/mupV). Keep in mind that I've decided to with having the option of<br>
+multiple airports per city, so if you have Melbourne as an origin and New York as destination, you will get a lot of flights<br>
+for that specific day. If the user decides to enter precise airport name, the results list and request time will be reduced<br>
 To run the start.sh script you will need npm, bower, node and git installed. You can do the set up process manually with the following commands.
 
 ```
